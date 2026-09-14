@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Pendaftaran LDK SMP Citra Bangsa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="section">
+    <div class="form-container">
+      <div style="text-align: center; margin-bottom: 15px;">
+  <img src="logo.png" alt="Logo LDK SMP Citra Bangsa" style="max-width: 100px; height: auto;">
+</div>
+      <h2 style="text-align:center; margin-bottom: 20px; color: var(--primary);">Formulir Pendaftaran</h2>
+      
+      <div class="step-wizard">
+        <div class="step-item active" id="step-indicator-1">
+          <div class="step-number">1</div>
+          <p>Siswa</p>
+        </div>
+        <div class="step-item" id="step-indicator-2">
+          <div class="step-number">2</div>
+          <p>Ortu</p>
+        </div>
+        <div class="step-item" id="step-indicator-3">
+          <div class="step-number">3</div>
+          <p>Medis</p>
+        </div>
+        <div class="step-item" id="step-indicator-4">
+          <div class="step-number">4</div>
+          <p>Review</p>
+        </div>
+      </div>
+
+      <form id="regForm">
+        <!-- STEP 1 -->
+        <div class="form-step active" id="step-1">
+          <div class="form-group">
+            <label>Nama Lengkap *</label>
+            <input type="text" id="fullName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Jenis Kelamin *</label>
+            <div class="radio-group">
+              <label><input type="radio" name="gender" value="Laki-laki" checked> Laki-laki</label>
+              <label><input type="radio" name="gender" value="Perempuan"> Perempuan</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Kelas *</label>
+            <input type="text" id="class" class="form-control" placeholder="Contoh: 7A / 8B" required>
+          </div>
+          <div class="form-group">
+            <label>No. WhatsApp Siswa *</label>
+            <input type="tel" id="studentWhatsapp" class="form-control" placeholder="08xxxxxxxxxx" required>
+          </div>
+          <div class="form-group">
+            <label>Tempat Lahir *</label>
+            <input type="text" id="birthPlace" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Tanggal Lahir *</label>
+            <input type="date" id="birthDate" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Alamat Lengkap *</label>
+            <textarea id="address" class="form-control" rows="3" required></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="nextStep(1)">Lanjut Step 2</button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" id="step-2">
+          <div class="form-group">
+            <label>Nama Orang Tua / Wali *</label>
+            <input type="text" id="parentName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Hubungan dengan Peserta *</label>
+            <select id="parentRelation" class="form-control" required>
+              <option value="Ayah">Ayah</option>
+              <option value="Ibu">Ibu</option>
+              <option value="Wali">Wali</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>No. WhatsApp Orang Tua / Wali *</label>
+            <input type="tel" id="parentWhatsapp" class="form-control" placeholder="08xxxxxxxxxx" required>
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Kembali</button>
+          <button type="button" class="btn btn-primary" onclick="nextStep(2)">Lanjut Step 3</button>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="form-step" id="step-3">
+          <div class="form-group">
+            <label>Apakah memiliki alergi?</label>
+            <select id="allergy" class="form-control" onchange="toggleDetail('allergy', 'allergyDetailBox')">
+              <option value="Tidak ada">Tidak ada</option>
+              <option value="Ada">Ada</option>
+            </select>
+          </div>
+          <div class="form-group" id="allergyDetailBox" style="display:none;">
+            <label>Jelaskan alergi yang dimiliki:</label>
+            <input type="text" id="allergyDetail" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Apakah memiliki kondisi khusus?</label>
+            <select id="specialCondition" class="form-control" onchange="toggleDetail('specialCondition', 'conditionDetailBox')">
+              <option value="Tidak ada">Tidak ada</option>
+              <option value="Ada">Ada</option>
+            </select>
+          </div>
+          <div class="form-group" id="conditionDetailBox" style="display:none;">
+            <label>Jelaskan kondisi khusus tersebut:</label>
+            <input type="text" id="conditionDetail" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Apakah membawa obat tertentu?</label>
+            <select id="medicine" class="form-control" onchange="toggleDetail('medicine', 'medicineDetailBox')">
+              <option value="Tidak ada">Tidak ada</option>
+              <option value="Ada">Ada</option>
+            </select>
+          </div>
+          <div class="form-group" id="medicineDetailBox" style="display:none;">
+            <label>Jelaskan obat tersebut:</label>
+            <input type="text" id="medicineDetail" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Catatan Tambahan untuk Panitia</label>
+            <textarea id="notes" class="form-control" rows="2"></textarea>
+          </div>
+          <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Kembali</button>
+          <button type="button" class="btn btn-primary" onclick="nextStep(3)">Lanjut Konfirmasi</button>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="form-step" id="step-4">
+          <div id="summaryContainer" class="summary-box"></div>
+          
+          <div class="form-group">
+            <label><input type="checkbox" id="chk1"> Saya menyatakan data di atas adalah benar dan bersedia mengikuti LDK 2026-2027. *</label>
+          </div>
+          <div class="form-group">
+            <label><input type="checkbox" id="chk2"> Saya telah membaca dan memahami seluruh informasi kegiatan. *</label>
+          </div>
+
+          <button type="button" class="btn btn-secondary" onclick="prevStep(4)">EDIT DATA</button>
+          <button type="submit" id="btnSubmit" class="btn btn-primary" disabled>KIRIM PENDAFTARAN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/registration.js"></script>
+</body>
+</html>
